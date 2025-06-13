@@ -26,11 +26,13 @@ class RecipesScreen extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 60,
+        horizontal: screenWidth > 1200 ? 80 : (screenWidth > 800 ? 48 : 16),
+        vertical: screenWidth > 800 ? 60 : 40,
       ),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -46,17 +48,17 @@ class RecipesScreen extends StatelessWidget {
             Text(
               'Lekker Recipes & Braai Tips',
               style: GoogleFonts.roboto(
-                fontSize: 36,
+                fontSize: screenWidth > 800 ? 36 : 28,
                 fontWeight: FontWeight.w900,
                 color: const Color(0xFF4D4D4D),
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: screenWidth > 800 ? 16 : 12),
             Text(
               'Make your braai legendary with our tried and tested recipes!',
               style: GoogleFonts.roboto(
-                fontSize: 18,
+                fontSize: screenWidth > 800 ? 18 : 16,
                 color: const Color(0xFF4D4D4D),
               ),
               textAlign: TextAlign.center,
@@ -68,6 +70,7 @@ class RecipesScreen extends StatelessWidget {
   }
 
   Widget _buildQuickTipsSection(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     final braaiTips = [
       {
         'icon': Icons.local_fire_department,
@@ -98,8 +101,8 @@ class RecipesScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 60,
+        horizontal: screenWidth > 1200 ? 80 : (screenWidth > 800 ? 48 : 16),
+        vertical: screenWidth > 800 ? 60 : 40,
       ),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -115,50 +118,161 @@ class RecipesScreen extends StatelessWidget {
             child: Text(
               'Quick Braai Tips',
               style: GoogleFonts.roboto(
-                fontSize: 28,
+                fontSize: screenWidth > 800 ? 28 : 24,
                 fontWeight: FontWeight.w800,
                 color: const Color(0xFF4D4D4D),
               ),
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(height: 40),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              int crossAxisCount;
-              if (constraints.maxWidth > 1200) {
-                crossAxisCount = 4;
-              } else if (constraints.maxWidth > 800) {
-                crossAxisCount = 2;
-              } else {
-                crossAxisCount = 1;
-              }
-
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  childAspectRatio: crossAxisCount == 1 ? 3.5 : (crossAxisCount == 2 ? 2.2 : 1.1),
+          SizedBox(height: screenWidth > 800 ? 40 : 24),
+          // Use Column for mobile, GridView for desktop
+          if (screenWidth <= 800) ...[
+            ...braaiTips.asMap().entries.map((entry) {
+              final index = entry.key;
+              final tip = entry.value;
+              return Padding(
+                padding: EdgeInsets.only(bottom: index < braaiTips.length - 1 ? 16 : 0),
+                child: FadeInUp(
+                  duration: Duration(milliseconds: 800 + (index * 150)),
+                  child: _buildTipCard(tip),
                 ),
-                itemCount: braaiTips.length,
-                itemBuilder: (context, index) {
-                  return FadeInUp(
-                    duration: Duration(milliseconds: 800 + (index * 150)),
-                    child: _buildTipCard(braaiTips[index]),
-                  );
-                },
               );
-            },
-          ),
+            }).toList(),
+          ] else ...[
+            LayoutBuilder(
+              builder: (context, constraints) {
+                int crossAxisCount;
+                double childAspectRatio;
+                
+                if (constraints.maxWidth > 1200) {
+                  crossAxisCount = 4;
+                  childAspectRatio = 1.1;
+                } else {
+                  crossAxisCount = 2;
+                  childAspectRatio = 2.2;
+                }
+
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                    childAspectRatio: childAspectRatio,
+                  ),
+                  itemCount: braaiTips.length,
+                  itemBuilder: (context, index) {
+                    return FadeInUp(
+                      duration: Duration(milliseconds: 800 + (index * 150)),
+                      child: _buildTipCard(braaiTips[index]),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ],
       ),
     );
   }
 
   Widget _buildTipCard(Map<String, dynamic> tip) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = MediaQuery.of(context).size.width;
+        final isMobile = screenWidth <= 800;
+        
+        if (isMobile) {
+          return _buildMobileTipCard(tip);
+        } else {
+          return _buildDesktopTipCard(tip);
+        }
+      },
+    );
+  }
+
+  Widget _buildMobileTipCard(Map<String, dynamic> tip) {
+    return Container(
+      height: 120, // Fixed height to prevent overflow
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.white,
+            Colors.white.withOpacity(0.8),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        border: Border.all(
+          color: Colors.white.withOpacity(0.3),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          // Icon section
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: const Color(0xFF4D4D4D).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(
+              tip['icon'],
+              size: 24,
+              color: const Color(0xFF4D4D4D),
+            ),
+          ),
+          const SizedBox(width: 16),
+          // Content section
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  tip['title'],
+                  style: GoogleFonts.roboto(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF4D4D4D),
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 6),
+                Expanded(
+                  child: Text(
+                    tip['tip'],
+                    style: GoogleFonts.roboto(
+                      fontSize: 12,
+                      color: const Color(0xFF4D4D4D),
+                      height: 1.3,
+                    ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDesktopTipCard(Map<String, dynamic> tip) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -224,6 +338,7 @@ class RecipesScreen extends StatelessWidget {
   }
 
   Widget _buildRecipesGrid(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     final recipes = [
       {
         'title': 'Perfect Boerewors Braai',
@@ -282,8 +397,8 @@ class RecipesScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 80,
+        horizontal: screenWidth > 1200 ? 80 : (screenWidth > 800 ? 48 : 16),
+        vertical: screenWidth > 800 ? 80 : 40,
       ),
       child: Column(
         children: [
@@ -292,42 +407,52 @@ class RecipesScreen extends StatelessWidget {
             child: Text(
               'Featured Recipes',
               style: GoogleFonts.roboto(
-                fontSize: 32,
+                fontSize: screenWidth > 800 ? 32 : 26,
                 fontWeight: FontWeight.w800,
                 color: const Color(0xFF4D4D4D),
               ),
               textAlign: TextAlign.center,
             ),
           ),
-          const SizedBox(height: 50),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              int crossAxisCount;
-              if (constraints.maxWidth > 1200) {
-                crossAxisCount = 2;
-              } else {
-                crossAxisCount = 1;
-              }
-
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: 32,
-                  mainAxisSpacing: 32,
-                  childAspectRatio: crossAxisCount == 1 ? 1.6 : 1.2,
+          SizedBox(height: screenWidth > 800 ? 50 : 30),
+          // Use Column instead of GridView for mobile to prevent overflow
+          if (screenWidth <= 800) ...[
+            ...recipes.asMap().entries.map((entry) {
+              final index = entry.key;
+              final recipe = entry.value;
+              return Padding(
+                padding: EdgeInsets.only(bottom: index < recipes.length - 1 ? 24 : 0),
+                child: FadeInUp(
+                  duration: Duration(milliseconds: 800 + (index * 200)),
+                  child: _buildRecipeCard(recipe, index, context),
                 ),
-                itemCount: recipes.length,
-                itemBuilder: (context, index) {
-                  return FadeInUp(
-                    duration: Duration(milliseconds: 800 + (index * 200)),
-                    child: _buildRecipeCard(recipes[index], index, context),
-                  );
-                },
               );
-            },
-          ),
+            }).toList(),
+          ] else ...[
+            LayoutBuilder(
+              builder: (context, constraints) {
+                int crossAxisCount = constraints.maxWidth > 1200 ? 2 : 1;
+
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 32,
+                    mainAxisSpacing: 32,
+                    childAspectRatio: crossAxisCount == 1 ? 1.6 : 1.2,
+                  ),
+                  itemCount: recipes.length,
+                  itemBuilder: (context, index) {
+                    return FadeInUp(
+                      duration: Duration(milliseconds: 800 + (index * 200)),
+                      child: _buildRecipeCard(recipes[index], index, context),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ],
       ),
     );
@@ -336,182 +461,335 @@ class RecipesScreen extends StatelessWidget {
   Widget _buildRecipeCard(Map<String, dynamic> recipe, int index, BuildContext context) {
     final recipeIds = ['boerewors', 'biltong', 'potjiekos', 'chops'];
     final recipeId = recipeIds[index];
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth <= 800;
     
     return InkWell(
       onTap: () => context.go('/recipe/$recipeId'),
       borderRadius: BorderRadius.circular(20),
       child: Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.white, Color(0xFFFAFAFA)],
+        // Fixed height for mobile to prevent overflow
+        height: isMobile ? 320 : null,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.white, Color(0xFFFAFAFA)],
+          ),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
+            ),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
-          ),
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        child: isMobile ? _buildMobileRecipeCard(recipe) : _buildDesktopRecipeCard(recipe),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-                  child: Image.network(
-                    recipe['image'],
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+    );
+  }
+
+  Widget _buildMobileRecipeCard(Map<String, dynamic> recipe) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Image section - smaller on mobile
+        SizedBox(
+          height: 140,
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                child: Image.network(
+                  recipe['image'],
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
                 ),
-                Positioned(
-                  top: 16,
-                  right: 16,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          size: 14,
+              ),
+              Positioned(
+                top: 12,
+                right: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.access_time, size: 12, color: Colors.white),
+                      const SizedBox(width: 4),
+                      Text(
+                        recipe['time'],
+                        style: GoogleFonts.roboto(
+                          fontSize: 10,
                           color: Colors.white,
+                          fontWeight: FontWeight.w500,
                         ),
-                        const SizedBox(width: 4),
-                        Text(
-                          recipe['time'],
-                          style: GoogleFonts.roboto(
-                            fontSize: 12,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 12,
+                left: 12,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4D4D4D).withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    recipe['difficulty'],
+                    style: GoogleFonts.roboto(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 16,
-                  left: 16,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF4D4D4D).withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      recipe['difficulty'],
-                      style: GoogleFonts.roboto(
-                        fontSize: 12,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+              ),
+            ],
+          ),
+        ),
+        // Content section - more compact
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  recipe['title'],
+                  style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF4D4D4D),
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  recipe['description'],
+                  style: GoogleFonts.roboto(
+                    fontSize: 13,
+                    color: const Color(0xFF666666),
+                    height: 1.3,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 12),
+                // Show only one tip on mobile
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4D4D4D).withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '💡 ',
+                        style: GoogleFonts.roboto(fontSize: 12),
                       ),
+                      Expanded(
+                        child: Text(
+                          (recipe['tips'] as List<String>).first,
+                          style: GoogleFonts.roboto(
+                            fontSize: 11,
+                            color: const Color(0xFF4D4D4D),
+                            height: 1.3,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                // Tap to view more indicator
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4D4D4D).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    'Tap to view recipe',
+                    style: GoogleFonts.roboto(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF4D4D4D),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    recipe['title'],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDesktopRecipeCard(Map<String, dynamic> recipe) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                child: Image.network(
+                  recipe['image'],
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                top: 16,
+                right: 16,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.access_time, size: 14, color: Colors.white),
+                      const SizedBox(width: 4),
+                      Text(
+                        recipe['time'],
+                        style: GoogleFonts.roboto(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 16,
+                left: 16,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4D4D4D).withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    recipe['difficulty'],
                     style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  recipe['title'],
+                  style: GoogleFonts.roboto(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: const Color(0xFF4D4D4D),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  recipe['description'],
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    color: const Color(0xFF666666),
+                    height: 1.4,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4D4D4D).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'Pro Tips:',
+                    style: GoogleFonts.roboto(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
                       color: const Color(0xFF4D4D4D),
                     ),
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    recipe['description'],
-                    style: GoogleFonts.roboto(
-                      fontSize: 14,
-                      color: const Color(0xFF666666),
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF4D4D4D).withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      'Pro Tips:',
-                      style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF4D4D4D),
+                ),
+                const SizedBox(height: 10),
+                Column(
+                  children: (recipe['tips'] as List<String>).take(2).map((tip) {
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 8),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: const Color(0xFF4D4D4D).withOpacity(0.2)),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                                    Column(
-                    children: (recipe['tips'] as List<String>).take(2).map((tip) {
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 8),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: const Color(0xFF4D4D4D).withOpacity(0.2)),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '• ',
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '• ',
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: const Color(0xFF4D4D4D),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              tip,
                               style: GoogleFonts.roboto(
                                 fontSize: 12,
                                 color: const Color(0xFF4D4D4D),
+                                height: 1.3,
                               ),
                             ),
-                            Expanded(
-                              child: Text(
-                                tip,
-                                style: GoogleFonts.roboto(
-                                  fontSize: 12,
-                                  color: const Color(0xFF4D4D4D),
-                                  height: 1.3,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
-    ),
+        ),
+      ],
     );
   }
 } 

@@ -210,8 +210,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
           });
         },
         style: TextButton.styleFrom(
-          foregroundColor: isActive ? const Color(0xFF4D4D4D) : Colors.white,
-          backgroundColor: isActive ? Colors.white : Colors.transparent,
+          foregroundColor: isActive ? Colors.white : const Color(0xFF4D4D4D),
+          backgroundColor: isActive ? const Color(0xFF4D4D4D) : Colors.transparent,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -287,8 +287,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
           });
         },
         style: TextButton.styleFrom(
-          foregroundColor: isActive ? const Color(0xFF4D4D4D) : Colors.white,
-          backgroundColor: isActive ? Colors.white : Colors.transparent,
+          foregroundColor: isActive ? Colors.white : const Color(0xFF4D4D4D),
+          backgroundColor: isActive ? const Color(0xFF4D4D4D) : Colors.transparent,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
