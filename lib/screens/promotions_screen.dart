@@ -35,41 +35,61 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
   Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 60,
-      ),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.white, Color(0xFFF8F8F8)],
+      height: MediaQuery.of(context).size.height * 0.5,
+      decoration: BoxDecoration(
+        color: const Color(0xFF2C2C2C),
+        image: DecorationImage(
+          image: const AssetImage('images/meat_items/biltong.jpg'),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.7),
+            BlendMode.darken,
+          ),
         ),
       ),
-      child: FadeInDown(
-        duration: const Duration(milliseconds: 800),
-        child: Column(
-          children: [
-            Text(
-              'Current Specials & Deals',
-              style: GoogleFonts.roboto(
-                fontSize: 36,
-                fontWeight: FontWeight.w900,
-                color: const Color(0xFF4D4D4D),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FadeInDown(
+            duration: const Duration(milliseconds: 800),
+            child: Text(
+              'SPECIAL OFFERS',
+              style: GoogleFonts.montserrat(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 4,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          FadeInDown(
+            duration: const Duration(milliseconds: 1000),
+            child: Text(
+              'Exclusive Deals & Promotions',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                height: 1.2,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
-            Text(
+          ),
+          const SizedBox(height: 16),
+          FadeInDown(
+            duration: const Duration(milliseconds: 1200),
+            child: Text(
               'Don\'t miss out on these lekker deals - limited time only!',
               style: GoogleFonts.roboto(
                 fontSize: 18,
-                color: const Color(0xFF4D4D4D),
+                color: Colors.white70,
+                height: 1.6,
               ),
               textAlign: TextAlign.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -83,7 +103,7 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
         'salePrice': 'R380',
         'savings': 'Save R70!',
         'validUntil': '2024-12-31',
-        'image': 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+        'image': 'images/meat_items/wors.jpg',
         'isHot': true,
       },
       {
@@ -93,7 +113,7 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
         'salePrice': 'R150',
         'savings': 'Save R30!',
         'validUntil': '2024-12-25',
-        'image': 'https://images.unsplash.com/photo-1652209695374-7a91c243f12f?q=80&w=2630&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'image': 'images/meat_items/biltong.jpg',
         'isHot': false,
       },
       {
@@ -103,7 +123,7 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
         'salePrice': 'R280',
         'savings': 'Save R40!',
         'validUntil': '2024-12-30',
-        'image': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+        'image': 'images/meat_items/lamb-chops.jpg',
         'isHot': false,
       },
       {
@@ -113,255 +133,242 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
         'salePrice': '10% OFF',
         'savings': 'Every Wednesday!',
         'validUntil': 'Ongoing',
-        'image': 'https://images.unsplash.com/photo-1611038333075-2efd28705f42?q=80&w=2749&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'image': 'images/meat_items/chicken-sosaties.jpg',
         'isHot': false,
       },
     ];
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 80,
-      ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          bool isDesktop = constraints.maxWidth > 1200;
-          
-          if (isDesktop) {
-            // Desktop: 2 columns using Row/Column layout
-            return Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: FadeInUp(
-                        duration: const Duration(milliseconds: 600),
-                        child: _buildPromotionCard(promotions[0]),
-                      ),
-                    ),
-                    const SizedBox(width: 24),
-                    Expanded(
-                      child: FadeInUp(
-                        duration: const Duration(milliseconds: 800),
-                        child: _buildPromotionCard(promotions[1]),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: FadeInUp(
-                        duration: const Duration(milliseconds: 1000),
-                        child: _buildPromotionCard(promotions[2]),
-                      ),
-                    ),
-                    const SizedBox(width: 24),
-                    Expanded(
-                      child: FadeInUp(
-                        duration: const Duration(milliseconds: 1200),
-                        child: _buildPromotionCard(promotions[3]),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          } else {
-            // Mobile: Single column
-            return Column(
-              children: promotions.asMap().entries.map((entry) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: entry.key < promotions.length - 1 ? 24 : 0),
-                  child: FadeInUp(
-                    duration: Duration(milliseconds: 600 + (entry.key * 200)),
-                    child: _buildPromotionCard(entry.value),
-                  ),
-                );
-              }).toList(),
-            );
-          }
-        },
-      ),
-    );
-  }
-
-  Widget _buildPromotionCard(Map<String, dynamic> promotion) {
-    return Container(
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(vertical: 100),
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
-      child: Stack(
+      child: Column(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Image.network(
-                    promotion['image'],
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      promotion['title'],
-                      style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF4D4D4D),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      promotion['description'],
-                      style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        color: const Color(0xFF4D4D4D),
-                        height: 1.4,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        if (promotion['originalPrice'] != 'Regular Prices') ...[
-                          Text(
-                            promotion['originalPrice'],
-                            style: GoogleFonts.roboto(
-                              fontSize: 16,
-                              color: const Color(0xFF4D4D4D).withOpacity(0.6),
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                        ],
-                        Text(
-                          promotion['salePrice'],
-                          style: GoogleFonts.roboto(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.green[600],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.green[50],
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.green[200]!),
-                      ),
-                      child: Text(
-                        promotion['savings'],
-                        style: GoogleFonts.roboto(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.green[700],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.schedule,
-                          size: 16,
-                          color: const Color(0xFF4D4D4D).withOpacity(0.7),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Valid until: ${promotion['validUntil']}',
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            color: const Color(0xFF4D4D4D).withOpacity(0.7),
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        onPressed: () => _addToCart(context, promotion),
-                        icon: const Icon(Icons.shopping_cart_outlined, size: 18),
-                        label: Text(
-                          'Add Special to Cart',
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF4D4D4D),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          if (promotion['isHot'] == true)
-            Positioned(
-              top: 12,
-              right: 12,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.red[500],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.local_fire_department,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'HOT DEAL',
-                      style: GoogleFonts.roboto(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
             ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Wrap(
+                  spacing: 30,
+                  runSpacing: 30,
+                  alignment: WrapAlignment.center,
+                  children: promotions.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final promotion = entry.value;
+                    return FadeInUp(
+                      duration: Duration(milliseconds: 1000 + (index * 200)),
+                      child: Container(
+                        width: constraints.maxWidth > 1200 
+                            ? (constraints.maxWidth - 90) / 3 
+                            : constraints.maxWidth > 800 
+                                ? (constraints.maxWidth - 30) / 2 
+                                : constraints.maxWidth,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              offset: const Offset(0, 10),
+                              blurRadius: 20,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(16),
+                                  ),
+                                  child: Image.asset(
+                                    promotion['image'] as String,
+                                    width: double.infinity,
+                                    height: 250,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                if (promotion['isHot'] == true)
+                                  Positioned(
+                                    top: 16,
+                                    right: 16,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red[600],
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.local_fire_department,
+                                            color: Colors.white,
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 6),
+                                          Text(
+                                            'HOT DEAL',
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white,
+                                              letterSpacing: 1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                Positioned(
+                                  bottom: 16,
+                                  left: 16,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF2C2C2C).withOpacity(0.9),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(
+                                          Icons.schedule,
+                                          color: Colors.white,
+                                          size: 16,
+                                        ),
+                                        const SizedBox(width: 6),
+                                        Text(
+                                          'Valid until: ${promotion['validUntil']}',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    promotion['title'] as String,
+                                    style: GoogleFonts.playfairDisplay(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xFF2C2C2C),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Text(
+                                    promotion['description'] as String,
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 16,
+                                      color: const Color(0xFF4D4D4D),
+                                      height: 1.6,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  Row(
+                                    children: [
+                                      if (promotion['originalPrice'] != 'Regular Prices')
+                                        Text(
+                                          promotion['originalPrice'] as String,
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: const Color(0xFF4D4D4D).withOpacity(0.6),
+                                            decoration: TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                      if (promotion['originalPrice'] != 'Regular Prices')
+                                        const SizedBox(width: 12),
+                                      Text(
+                                        promotion['salePrice'] as String,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.green[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.green[50],
+                                      borderRadius: BorderRadius.circular(30),
+                                      border: Border.all(
+                                        color: Colors.green[200]!,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      promotion['savings'] as String,
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.green[700],
+                                        letterSpacing: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () => _addToCart(context, promotion),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(0xFF2C2C2C),
+                                        foregroundColor: Colors.white,
+                                        padding: const EdgeInsets.symmetric(vertical: 16),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'ADD TO CART',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 1,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -378,12 +385,11 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
       source: 'Beesland Special',
       cookingTip: 'Enjoy this special deal with family and friends!',
       quantity: 1,
-      weight: 1.0, // Specials are sold as complete packages
+      weight: 1.0,
     );
 
     _cartService.addItem(cartItem);
 
-    // Show success message
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -393,12 +399,15 @@ class _PromotionsScreenState extends State<PromotionsScreen> {
             Expanded(
               child: Text(
                 '${promotion['title']} added to cart!',
-                style: GoogleFonts.roboto(color: Colors.white),
+                style: GoogleFonts.montserrat(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],
         ),
-        backgroundColor: Colors.green[600],
+        backgroundColor: Colors.green[700],
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

@@ -23,7 +23,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   final List<String> categories = [
     'All',
     'Beef',
-    'Pork',
+    'Lamb',
     'Chicken',
     'Wors',
     'Biltong',
@@ -32,76 +32,92 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   final List<Map<String, dynamic>> products = [
     {
-      'name': 'A-Grade Ribeye Steak',
+      'name': 'Premium Beef Steak',
       'category': 'Beef',
-      'price': 'R89/kg',
-      'description': 'Prime ribeye that\'ll make you say "Eish, this is the real deal!" Juicy, tender, and full of flavour.',
-      'image': 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      'source': 'Local farm-raised cattle',
-      'cookingTip': 'Best braai\'d over medium coals for 3-4 minutes each side',
+      'price': 'R189/kg',
+      'description': 'Hand-selected, perfectly marbled cuts that define excellence. Each steak is aged to perfection for maximum tenderness and flavor.',
+      'image': 'images/meat_items/beef-steak.jpg',
+      'source': 'Local grass-fed cattle',
+      'cookingTip': 'Best served medium-rare, rested for 5-10 minutes after cooking',
+      'isNew': true,
+      'isBestseller': true,
     },
     {
       'name': 'Traditional Boerewors',
       'category': 'Wors',
-      'price': 'R65/kg',
-      'description': 'Proper boerewors made the old-school way - no funny business, just pure lekker tradition!',
-      'image': 'https://images.unsplash.com/photo-1684561607487-565ddc54d58f?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'price': 'R85/kg',
+      'description': 'Our signature boerewors, made fresh daily using a generations-old recipe. Perfect blend of beef and spices.',
+      'image': 'images/meat_items/wors.jpg',
       'source': 'Made fresh daily in-store',
-      'cookingTip': 'Braai slowly, don\'t prick - let the natural casing do its magic',
+      'cookingTip': 'Grill slowly over medium heat, maintaining the spiral shape',
+      'isNew': false,
+      'isBestseller': true,
     },
     {
-      'name': 'Premium Biltong',
+      'name': 'Artisanal Biltong',
       'category': 'Biltong',
-      'price': 'R220/kg',
-      'description': 'Biltong so good, it\'ll make you weep tears of joy. This is what the ou tannies back in the day would make!',
-      'image': 'https://images.unsplash.com/photo-1652209695374-7a91c243f12f?q=80&w=2630&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'price': 'R280/kg',
+      'description': 'Premium cuts of beef, perfectly spiced and dried to perfection. Available in traditional or peri-peri flavor.',
+      'image': 'images/meat_items/biltong.jpg',
       'source': 'Premium silverside cuts',
-      'cookingTip': 'Perfect with a beer and some good tjommies',
+      'cookingTip': 'Ready to eat, best stored in a cool, dry place',
+      'isNew': false,
+      'isBestseller': true,
     },
     {
-      'name': 'Droë Wors',
-      'category': 'Biltong',
-      'price': 'R180/kg',
-      'description': 'Dry wors that\'ll make your ou toppie proud. Perfect for when you need that proper biltong fix!',
-      'image': 'https://images.unsplash.com/photo-1603048297172-c92544798d5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      'source': 'Air-dried using traditional methods',
-      'cookingTip': 'No cooking needed - just enjoy as is with a cold one!',
-    },
-    {
-      'name': 'Free-Range Chicken',
+      'name': 'Chicken Sosaties',
       'category': 'Chicken',
-      'price': 'R45/kg',
-      'description': 'Happy chickens make for lekker eating! These okes had the good life before joining your plate.',
-      'image': 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      'source': 'Local free-range farms',
-      'cookingTip': 'Potjiekos or spatchcock on the braai - either way, it\'s gonna be lekker!',
-    },
-    {
-      'name': 'Pork Chops',
-      'category': 'Pork',
-      'price': 'R55/kg',
-      'description': 'Chops that\'ll make your braai the talk of the neighbourhood. Thick, juicy, and ready to impress!',
-      'image': 'https://images.unsplash.com/photo-1592686092916-672fa9e86866?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      'source': 'Local pork suppliers',
-      'cookingTip': 'Season well and braai over medium heat - don\'t rush the process!',
-    },
-    {
-      'name': 'Gourmet Burgers',
-      'category': 'Beef',
-      'price': 'R12 each',
-      'description': 'Burger patties that\'ll put those fast-food okes to shame. Pure beef, no fillers, just lekker taste!',
-      'image': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-      'source': '100% pure beef mince',
-      'cookingTip': 'Don\'t press down on the patty - let it cook naturally for maximum juiciness',
-    },
-    {
-      'name': 'Artisanal Salami',
-      'category': 'Deli',
       'price': 'R95/kg',
-      'description': 'Salami so fancy, you\'ll feel like you\'re in Italy. But don\'t worry, it\'s still proudly South African!',
-      'image': 'https://images.unsplash.com/photo-1460122109654-7e46ab4fc9b9?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'source': 'Handcrafted in small batches',
-      'cookingTip': 'Slice thin and enjoy with good bread and cheese',
+      'description': 'Tender chicken pieces marinated in our special blend of herbs and spices, skewered with onions and peppers.',
+      'image': 'images/meat_items/chicken-sosaties.jpg',
+      'source': 'Free-range chicken',
+      'cookingTip': 'Grill for 12-15 minutes, turning occasionally',
+      'isNew': true,
+      'isBestseller': false,
+    },
+    {
+      'name': 'Premium Lamb Chops',
+      'category': 'Lamb',
+      'price': 'R225/kg',
+      'description': 'Succulent Karoo lamb chops, perfect for your next braai. Known for their exceptional flavor and tenderness.',
+      'image': 'images/meat_items/lamb-chops.jpg',
+      'source': 'Karoo free-range lamb',
+      'cookingTip': 'Season well with herbs and garlic, grill to medium',
+      'isNew': false,
+      'isBestseller': false,
+    },
+    {
+      'name': 'Grass-fed Beef Mince',
+      'category': 'Beef',
+      'price': 'R95/kg',
+      'description': 'Premium ground beef from grass-fed cattle. Perfect for burgers, bolognese, or any mince dish.',
+      'image': 'images/meat_items/beef-mince.jpg',
+      'source': 'Local grass-fed cattle',
+      'cookingTip': 'Best cooked medium to maintain juiciness',
+      'isNew': false,
+      'isBestseller': false,
+    },
+    {
+      'name': 'Traditional Oxtail',
+      'category': 'Beef',
+      'price': 'R165/kg',
+      'description': 'Perfect for slow-cooking, our oxtail is well-trimmed and ideal for traditional South African oxtail stew.',
+      'image': 'images/meat_items/oxtail.jpg',
+      'source': 'Local farm-raised cattle',
+      'cookingTip': 'Slow cook for 4-5 hours until tender',
+      'isNew': true,
+      'isBestseller': false,
+    },
+    {
+      'name': 'Halloumi Poppers',
+      'category': 'Deli',
+      'price': 'R85/pack',
+      'description': 'Grilled halloumi cheese wrapped in bacon, perfect as a starter or snack.',
+      'image': 'images/meat_items/halloumi-poppers.jpg',
+      'source': 'Made fresh in our deli',
+      'cookingTip': 'Grill until bacon is crispy, serve immediately',
+      'isNew': true,
+      'isBestseller': true,
     },
   ];
 
@@ -134,41 +150,60 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget _buildHeader() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 60,
-      ),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.white, Color(0xFFF8F8F8)],
+      padding: const EdgeInsets.symmetric(vertical: 100),
+      decoration: BoxDecoration(
+        color: const Color(0xFF2C2C2C),
+        image: DecorationImage(
+          image: const AssetImage('images/meat_items/beef-steak.jpg'),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.7),
+            BlendMode.darken,
+          ),
         ),
       ),
-      child: FadeInDown(
-        duration: const Duration(milliseconds: 800),
-        child: Column(
-          children: [
-            Text(
-              'Our Lekker Vleis Selection',
-              style: GoogleFonts.roboto(
-                fontSize: 36,
-                fontWeight: FontWeight.w900,
-                color: const Color(0xFF4D4D4D),
+      child: Column(
+        children: [
+          FadeInDown(
+            duration: const Duration(milliseconds: 800),
+            child: Text(
+              'PREMIUM MEATS',
+              style: GoogleFonts.montserrat(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 4,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          FadeInDown(
+            duration: const Duration(milliseconds: 1000),
+            child: Text(
+              'Quality You Can Taste',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                height: 1.2,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
-            Text(
-              'From A-grade steaks to traditional boerewors - we\'ve got all the vleis your heart desires!',
+          ),
+          const SizedBox(height: 16),
+          FadeInDown(
+            duration: const Duration(milliseconds: 1200),
+            child: Text(
+              'From premium cuts to traditional favorites',
               style: GoogleFonts.roboto(
                 fontSize: 18,
-                color: const Color(0xFF4D4D4D),
+                color: Colors.white70,
+                height: 1.6,
               ),
               textAlign: TextAlign.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -177,84 +212,83 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 32,
+        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
+        vertical: 40,
       ),
-      child: FadeInUp(
-        duration: const Duration(milliseconds: 600),
-        child: Column(
-          children: [
-            // Search Bar
-            Container(
-              constraints: const BoxConstraints(maxWidth: 400),
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    searchQuery = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: 'Search for your favourite vleis...',
-                  hintStyle: GoogleFonts.roboto(
-                    color: const Color(0xFF4D4D4D).withOpacity(0.6),
-                  ),
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Color(0xFF4D4D4D),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF4D4D4D)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: const Color(0xFF4D4D4D).withOpacity(0.3)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF4D4D4D), width: 2),
-                  ),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xFFEEEEEE),
+            width: 1,
+          ),
+        ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            constraints: const BoxConstraints(maxWidth: 500),
+            child: TextField(
+              onChanged: (value) => setState(() => searchQuery = value),
+              decoration: InputDecoration(
+                hintText: 'Search our selection...',
+                hintStyle: GoogleFonts.roboto(
+                  color: const Color(0xFF4D4D4D).withOpacity(0.6),
+                ),
+                prefixIcon: const Icon(Icons.search, color: Color(0xFF4D4D4D)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: const Color(0xFFF5F5F5),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
                 ),
               ),
             ),
-            const SizedBox(height: 24),
-            // Category Filter
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              alignment: WrapAlignment.center,
+          ),
+          const SizedBox(height: 32),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
               children: categories.map((category) {
                 final isSelected = selectedCategory == category;
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedCategory = category;
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: isSelected ? const Color(0xFF4D4D4D) : Colors.transparent,
-                      border: Border.all(
-                        color: const Color(0xFF4D4D4D),
-                        width: 2,
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: InkWell(
+                    onTap: () => setState(() => selectedCategory = category),
+                    borderRadius: BorderRadius.circular(30),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
                       ),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Text(
-                      category,
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: isSelected ? Colors.white : const Color(0xFF4D4D4D),
+                      decoration: BoxDecoration(
+                        color: isSelected ? const Color(0xFF2C2C2C) : Colors.transparent,
+                        border: Border.all(
+                          color: isSelected ? const Color(0xFF2C2C2C) : const Color(0xFFDDDDDD),
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Text(
+                        category,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: isSelected ? Colors.white : const Color(0xFF4D4D4D),
+                          letterSpacing: 1,
+                        ),
                       ),
                     ),
                   ),
                 );
               }).toList(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -263,8 +297,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 32,
+        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
+        vertical: 60,
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -282,9 +316,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 24,
-              mainAxisSpacing: 24,
-              childAspectRatio: 0.75,
+              crossAxisSpacing: 30,
+              mainAxisSpacing: 30,
+              childAspectRatio: 0.8,
             ),
             itemCount: filteredProducts.length,
             itemBuilder: (context, index) {
@@ -300,92 +334,142 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   Widget _buildProductCard(Map<String, dynamic> product) {
-    return Card(
-      elevation: 8,
-      shape: RoundedRectangleBorder(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            offset: const Offset(0, 10),
+            blurRadius: 20,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Product Image
           Expanded(
-            flex: 4,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Image.network(
-                product['image'],
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+            flex: 5,
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                  child: Image.asset(
+                    product['image'],
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                if (product['isNew'] == true)
+                  Positioned(
+                    top: 16,
+                    left: 16,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        'NEW',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                if (product['isBestseller'] == true)
+                  Positioned(
+                    top: 16,
+                    right: 16,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        'BESTSELLER',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
-          // Product Info
           Expanded(
             flex: 6,
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Name and Category
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          product['name'],
-                          style: GoogleFonts.roboto(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFF4D4D4D),
-                          ),
-                        ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F5F5),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      product['category'],
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFF4D4D4D),
+                        letterSpacing: 1,
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF4D4D4D).withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          product['category'],
-                          style: GoogleFonts.roboto(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF4D4D4D),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  // Price
+                  const SizedBox(height: 12),
                   Text(
-                    product['price'],
-                    style: GoogleFonts.roboto(
+                    product['name'],
+                    style: GoogleFonts.playfairDisplay(
                       fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xFF4D4D4D),
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF2C2C2C),
                     ),
                   ),
                   const SizedBox(height: 8),
-                  // Description
+                  Text(
+                    product['price'],
+                    style: GoogleFonts.montserrat(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF2C2C2C),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
                   Expanded(
                     child: Text(
                       product['description'],
                       style: GoogleFonts.roboto(
                         fontSize: 14,
                         color: const Color(0xFF4D4D4D),
-                        height: 1.4,
+                        height: 1.5,
                       ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  // Source
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       const Icon(
@@ -393,7 +477,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         size: 16,
                         color: Color(0xFF4D4D4D),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           product['source'],
@@ -408,21 +492,33 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  // Add to Cart Button
+                  const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () => _showWeightSelector(product),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF2C2C2C),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(Icons.add_shopping_cart, size: 20),
                           const SizedBox(width: 8),
                           Text(
-                            _cartService.isInCart(product['name']) 
-                                ? 'In Cart (${_cartService.getQuantity(product['name'])})'
+                            _cartService.isInCart(product['name'])
+                                ? 'Update Cart (${_cartService.getQuantity(product['name'])}kg)'
                                 : 'Add to Cart',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                            ),
                           ),
                         ],
                       ),

@@ -47,41 +47,61 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 60,
-      ),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.white, Color(0xFFF8F8F8)],
+      height: MediaQuery.of(context).size.height * 0.5,
+      decoration: BoxDecoration(
+        color: const Color(0xFF2C2C2C),
+        image: DecorationImage(
+          image: const AssetImage('images/meat_items/lamb-chops.jpg'),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.7),
+            BlendMode.darken,
+          ),
         ),
       ),
-      child: FadeInDown(
-        duration: const Duration(milliseconds: 800),
-        child: Column(
-          children: [
-            Text(
-              'Holla at Us!',
-              style: GoogleFonts.roboto(
-                fontSize: 36,
-                fontWeight: FontWeight.w900,
-                color: const Color(0xFF4D4D4D),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FadeInDown(
+            duration: const Duration(milliseconds: 800),
+            child: Text(
+              'GET IN TOUCH',
+              style: GoogleFonts.montserrat(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 4,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          FadeInDown(
+            duration: const Duration(milliseconds: 1000),
+            child: Text(
+              'Contact Us',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                height: 1.2,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
-            Text(
-              'Got questions about our lekker vleis? Need to place an order? We\'re here to help!',
+          ),
+          const SizedBox(height: 16),
+          FadeInDown(
+            duration: const Duration(milliseconds: 1200),
+            child: Text(
+              'Got questions about our lekker vleis? Need to place an order?\nWe\'re here to help!',
               style: GoogleFonts.roboto(
                 fontSize: 18,
-                color: const Color(0xFF4D4D4D),
+                color: Colors.white70,
+                height: 1.6,
               ),
               textAlign: TextAlign.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -89,37 +109,46 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget _buildContactContent(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 40,
+      padding: const EdgeInsets.symmetric(vertical: 100),
+      decoration: const BoxDecoration(
+        color: Colors.white,
       ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth > 1000) {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: _buildContactForm(),
-                ),
-                const SizedBox(width: 32),
-                Expanded(
-                  flex: 4,
-                  child: _buildContactInfo(),
-                ),
-              ],
-            );
-          } else {
-            return Column(
-              children: [
-                _buildContactInfo(),
-                const SizedBox(height: 40),
-                _buildContactForm(),
-              ],
-            );
-          }
-        },
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
+            ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > 1000) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: _buildContactForm(),
+                      ),
+                      const SizedBox(width: 32),
+                      Expanded(
+                        flex: 4,
+                        child: _buildContactInfo(),
+                      ),
+                    ],
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      _buildContactInfo(),
+                      const SizedBox(height: 40),
+                      _buildContactForm(),
+                    ],
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -127,27 +156,44 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget _buildContactForm() {
     return FadeInLeft(
       duration: const Duration(milliseconds: 1000),
-      child: Card(
-        elevation: 8,
-        shape: RoundedRectangleBorder(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 10),
+              blurRadius: 20,
+            ),
+          ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(32),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Send us a Message',
-                  style: GoogleFonts.roboto(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFF4D4D4D),
+                  'SEND US A MESSAGE',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 4,
+                    color: const Color(0xFF2C2C2C),
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
+                Text(
+                  'Get in Touch',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF2C2C2C),
+                  ),
+                ),
+                const SizedBox(height: 32),
                 _buildTextField(
                   controller: _nameController,
                   label: 'Your Name',
@@ -159,7 +205,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 _buildTextField(
                   controller: _emailController,
                   label: 'Email Address',
@@ -175,14 +221,14 @@ class _ContactScreenState extends State<ContactScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 _buildTextField(
                   controller: _phoneController,
                   label: 'Phone Number',
                   icon: Icons.phone,
                   keyboardType: TextInputType.phone,
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 _buildTextField(
                   controller: _messageController,
                   label: 'Your Message',
@@ -195,12 +241,27 @@ class _ContactScreenState extends State<ContactScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: _submitForm,
-                    child: const Text('Send Message'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF2C2C2C),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'SEND MESSAGE',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -224,31 +285,37 @@ class _ContactScreenState extends State<ContactScreen> {
       maxLines: maxLines,
       keyboardType: keyboardType,
       validator: validator,
+      style: GoogleFonts.roboto(
+        color: const Color(0xFF2C2C2C),
+      ),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: GoogleFonts.roboto(
-          color: const Color(0xFF4D4D4D),
+        labelStyle: GoogleFonts.montserrat(
+          color: const Color(0xFF2C2C2C).withOpacity(0.7),
+          fontWeight: FontWeight.w500,
         ),
         prefixIcon: Icon(
           icon,
-          color: const Color(0xFF4D4D4D),
+          color: const Color(0xFF2C2C2C).withOpacity(0.7),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Color(0xFF4D4D4D)),
+          borderSide: BorderSide(color: const Color(0xFF2C2C2C).withOpacity(0.2)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: const Color(0xFF4D4D4D).withOpacity(0.3)),
+          borderSide: BorderSide(color: const Color(0xFF2C2C2C).withOpacity(0.2)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Color(0xFF4D4D4D), width: 2),
+          borderSide: const BorderSide(color: Color(0xFF2C2C2C), width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red),
+          borderSide: BorderSide(color: Colors.red[700]!),
         ),
+        filled: true,
+        fillColor: const Color(0xFF2C2C2C).withOpacity(0.05),
       ),
     );
   }
@@ -256,82 +323,90 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget _buildContactInfo() {
     return FadeInRight(
       duration: const Duration(milliseconds: 1000),
-      child: Column(
-        children: [
-          _buildContactCard(),
-          const SizedBox(height: 24),
-          _buildMapCard(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildContactCard() {
-    return Card(
-      elevation: 8,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Get in Touch',
-              style: GoogleFonts.roboto(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: const Color(0xFF4D4D4D),
-              ),
-            ),
-            const SizedBox(height: 24),
-            _buildContactItem(
-              Icons.location_on,
-              'Address',
-              '18A Da Gama Road\nJeffreys Bay, Eastern Cape',
-              () => _launchMaps(),
-            ),
-            const SizedBox(height: 16),
-            _buildContactItem(
-              Icons.phone,
-              'Phone',
-              '042 293 3908',
-              () => _launchPhone('042293908'),
-            ),
-            const SizedBox(height: 16),
-            _buildContactItem(
-              Icons.access_time,
-              'Store Hours',
-              'Mon-Fri: 7AM-6PM\nSat: 7AM-4PM\nSun: Closed',
-              null,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Follow Us',
-              style: GoogleFonts.roboto(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xFF4D4D4D),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                _buildSocialButton(
-                  Icons.facebook,
-                  'Facebook',
-                  () => _launchUrl('https://www.facebook.com/beeslandjbaai/'),
-                ),
-                const SizedBox(width: 12),
-                _buildSocialButton(
-                  Icons.camera_alt,
-                  'Instagram',
-                  () => _launchUrl('https://www.instagram.com/beesland_jeffreysbaai/'),
-                ),
-              ],
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 10),
+              blurRadius: 20,
             ),
           ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'VISIT US',
+                style: GoogleFonts.montserrat(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 4,
+                  color: const Color(0xFF2C2C2C),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Our Location',
+                style: GoogleFonts.playfairDisplay(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFF2C2C2C),
+                ),
+              ),
+              const SizedBox(height: 32),
+              _buildContactItem(
+                Icons.location_on,
+                'Address',
+                '18A Da Gama Road\nJeffreys Bay, Eastern Cape',
+                () => _launchMaps(),
+              ),
+              const SizedBox(height: 24),
+              _buildContactItem(
+                Icons.phone,
+                'Phone',
+                '042 293 3908',
+                () => _launchPhone('042293908'),
+              ),
+              const SizedBox(height: 24),
+              _buildContactItem(
+                Icons.access_time,
+                'Store Hours',
+                'Mon-Fri: 7AM-6PM\nSat: 7AM-4PM\nSun: Closed',
+                null,
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'FOLLOW US',
+                style: GoogleFonts.montserrat(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 4,
+                  color: const Color(0xFF2C2C2C),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  _buildSocialButton(
+                    Icons.facebook,
+                    'Facebook',
+                    () => _launchUrl('https://www.facebook.com/beeslandjbaai/'),
+                  ),
+                  const SizedBox(width: 12),
+                  _buildSocialButton(
+                    Icons.camera_alt,
+                    'Instagram',
+                    () => _launchUrl('https://www.instagram.com/beesland_jeffreysbaai/'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -345,53 +420,71 @@ class _ContactScreenState extends State<ContactScreen> {
   ) {
     return InkWell(
       onTap: onTap,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: const Color(0xFF4D4D4D).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(
-              icon,
-              color: const Color(0xFF4D4D4D),
-              size: 20,
-            ),
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFF2C2C2C).withOpacity(0.05),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: const Color(0xFF2C2C2C).withOpacity(0.1),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.roboto(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF4D4D4D),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  content,
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    color: const Color(0xFF4D4D4D),
-                    height: 1.4,
-                  ),
-                ),
-              ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xFF2C2C2C),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                icon,
+                color: Colors.white,
+                size: 24,
+              ),
             ),
-          ),
-          if (onTap != null)
-            Icon(
-              Icons.launch,
-              color: const Color(0xFF4D4D4D).withOpacity(0.5),
-              size: 16,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF2C2C2C),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    content,
+                    style: GoogleFonts.roboto(
+                      fontSize: 16,
+                      color: const Color(0xFF2C2C2C).withOpacity(0.7),
+                      height: 1.6,
+                    ),
+                  ),
+                ],
+              ),
             ),
-        ],
+            if (onTap != null)
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2C2C2C).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: const Color(0xFF2C2C2C),
+                  size: 16,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -399,11 +492,12 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget _buildSocialButton(IconData icon, String label, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(30),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
-          color: const Color(0xFF4D4D4D),
-          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xFF2C2C2C),
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -411,15 +505,16 @@ class _ContactScreenState extends State<ContactScreen> {
             Icon(
               icon,
               color: Colors.white,
-              size: 16,
+              size: 18,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             Text(
-              label,
-              style: GoogleFonts.roboto(
-                fontSize: 14,
+              label.toUpperCase(),
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
+                letterSpacing: 1,
               ),
             ),
           ],
@@ -428,79 +523,13 @@ class _ContactScreenState extends State<ContactScreen> {
     );
   }
 
-  Widget _buildMapCard() {
-    return Card(
-      elevation: 8,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Container(
-        height: 200,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: const Color(0xFFF8F8F8),
-        ),
-        child: Stack(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.map,
-                    size: 48,
-                    color: const Color(0xFF4D4D4D).withOpacity(0.5),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Interactive Map',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF4D4D4D).withOpacity(0.7),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  ElevatedButton(
-                    onPressed: _launchMaps,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4D4D4D),
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Text('Get Directions'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+  Future<void> _launchMaps() async {
+    const String address = '18A Da Gama Road, Jeffreys Bay, Eastern Cape, South Africa';
+    final Uri uri = Uri.parse(
+      'https://www.google.com/maps/place/Beesland+Butchery+%26+Deli/@-34.0516543,24.9164513,17z/data=!3m1!4b1!4m6!3m5!1s0x1e7ac3c92c4b25e1:0x4f4b0f7c81597f13!8m2!3d-34.0516543!4d24.9190262!16s%2Fg%2F11h_ck_99k?entry=ttu'
     );
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Thanks boet! Your message has been sent. We\'ll get back to you lekker quick!',
-            style: GoogleFonts.roboto(),
-          ),
-          backgroundColor: Colors.green,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      );
-
-      // Clear form
-      _nameController.clear();
-      _emailController.clear();
-      _phoneController.clear();
-      _messageController.clear();
+    if (!await launchUrl(uri)) {
+      throw Exception('Could not launch maps');
     }
   }
 
@@ -518,11 +547,38 @@ class _ContactScreenState extends State<ContactScreen> {
     }
   }
 
-  Future<void> _launchMaps() async {
-    const String address = '18A Da Gama Road, Jeffreys Bay, Eastern Cape, South Africa';
-    final Uri uri = Uri.parse('https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(address)}');
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch maps');
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(Icons.check_circle, color: Colors.white),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Thanks boet! Your message has been sent. We\'ll get back to you lekker quick!',
+                  style: GoogleFonts.montserrat(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.green[700],
+          duration: const Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      );
+
+      _nameController.clear();
+      _emailController.clear();
+      _phoneController.clear();
+      _messageController.clear();
     }
   }
 } 

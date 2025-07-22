@@ -32,7 +32,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
         'time': '15 mins',
         'difficulty': 'Easy',
         'servings': '4-6 people',
-        'image': 'https://images.unsplash.com/photo-1591989330748-777649e84466?q=80&w=2333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'image': 'images/meat_items/wors.jpg',
         'ingredients': [
           '1kg traditional boerewors',
           'Coarse salt',
@@ -64,7 +64,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
         'time': '5-7 days',
         'difficulty': 'Medium',
         'servings': '500g portions',
-        'image': 'https://images.unsplash.com/photo-1652209695374-7a91c243f12f?q=80&w=2630&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'image': 'images/meat_items/biltong.jpg',
         'ingredients': [
           '2kg silverside or topside beef',
           '1 cup coarse salt',
@@ -91,77 +91,67 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
           'Patience is key - don\'t rush the drying process',
         ],
       },
-      'potjiekos': {
-        'title': 'Potjiekos Special',
-        'description': 'A hearty potjie that\'ll feed the whole family',
-        'time': '2-3 hours',
+      'chicken-sosaties': {
+        'title': 'Chicken Sosaties',
+        'description': 'Juicy and flavorful chicken sosaties that will steal the show',
+        'time': '30 mins',
         'difficulty': 'Medium',
-        'servings': '6-8 people',
-        'image': 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        'servings': '4-6 people',
+        'image': 'images/meat_items/chicken-sosaties.jpg',
         'ingredients': [
-          '1.5kg lamb or beef, cubed',
-          '4 large onions, sliced',
-          '4 large potatoes, cubed',
-          '3 carrots, sliced',
-          '2 cups beef stock',
-          '2 tbsp oil',
-          'Salt and pepper to taste',
-          'Mixed herbs',
+          '1kg chicken breast, cubed',
+          'Bell peppers and onions',
+          'Wooden skewers',
+          'Marinade ingredients',
+          'Fresh herbs',
         ],
         'steps': [
-          'Heat oil in the potjie pot over medium coals',
-          'Brown the meat in batches - don\'t overcrowd the pot',
-          'Remove meat and set aside',
-          'Add onions to the pot and cook until soft and golden',
-          'Return meat to the pot and add seasoning',
-          'Add stock gradually - don\'t add too much at once',
-          'Layer vegetables on top - potatoes first, then carrots',
-          'Cover and simmer slowly for 2-3 hours',
-          'Check occasionally but avoid stirring too much',
-          'Vegetables should be tender when done',
-          'Serve with bread or pap',
+          'Soak wooden skewers in water for 30 minutes',
+          'Cut chicken into even-sized cubes',
+          'Prepare marinade and coat chicken pieces',
+          'Cut vegetables into similar-sized pieces',
+          'Thread chicken and vegetables onto skewers',
+          'Preheat braai to medium-high heat',
+          'Grill sosaties for 12-15 minutes, turning occasionally',
+          'Baste with remaining marinade while cooking',
+          'Ensure chicken is cooked through before serving',
         ],
         'tips': [
-          'Brown the meat first for maximum flavour',
-          'Layer ingredients - don\'t stir too much',
-          'Use a good cast iron potjie pot',
-          'Low and slow is the way to go',
+          'Marinate overnight for best results',
+          'Don\'t overcrowd the skewers',
+          'Keep basting with the marinade',
+          'Serve with fresh lemon wedges',
         ],
       },
-      'chops': {
-        'title': 'Braai Chops Perfection',
-        'description': 'Juicy pork chops that\'ll make you the braai master',
+      'lamb-chops': {
+        'title': 'Perfect Lamb Chops',
+        'description': 'Tender and succulent lamb chops with a perfect crust',
         'time': '20 mins',
-        'difficulty': 'Easy',
+        'difficulty': 'Medium',
         'servings': '4 people',
-        'image': 'https://images.unsplash.com/photo-1592686092916-672fa9e86866?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        'image': 'images/meat_items/lamb-chops.jpg',
         'ingredients': [
-          '8 pork chops (about 2cm thick)',
-          'Coarse salt',
-          'Black pepper',
-          '2 tbsp olive oil',
-          'Garlic powder (optional)',
-          'Rosemary sprigs (optional)',
+          '8 lamb chops',
+          'Fresh rosemary and thyme',
+          'Garlic cloves',
+          'Olive oil',
+          'Salt and black pepper',
         ],
         'steps': [
           'Remove chops from fridge 30 minutes before cooking',
-          'Pat chops dry with paper towels',
-          'Brush lightly with olive oil',
-          'Season generously with coarse salt and black pepper',
-          'Prepare braai - wait for hot coals with no flames',
-          'Place chops on the braai grid over direct heat',
-          'Sear for 3-4 minutes on first side - don\'t move them',
-          'Flip once and sear the other side for 3-4 minutes',
-          'Move to cooler part of braai if needed to finish cooking',
-          'Cook until internal temperature reaches 63°C',
-          'Rest for 5 minutes before serving',
-          'Serve immediately with your favorite sides',
+          'Mix herbs, garlic, and oil for marinade',
+          'Season chops generously with salt and pepper',
+          'Rub herb mixture onto both sides of chops',
+          'Prepare braai for medium-high heat',
+          'Grill chops for 4-5 minutes per side for medium',
+          'Let rest for 5-10 minutes before serving',
+          'Garnish with fresh herbs',
         ],
         'tips': [
-          'Season well with coarse salt and pepper',
-          'Let them come to room temperature first',
-          'Don\'t move them too much - let them sear',
-          'Rest for 5 minutes before serving',
+          'Bring to room temperature before cooking',
+          'Season generously with herbs and garlic',
+          'Cook on high heat for a good crust',
+          'Rest for 5-10 minutes before serving',
         ],
       },
     };
@@ -190,15 +180,15 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
 
   Widget _buildHeroSection(BuildContext context) {
     return Container(
-      height: 400,
+      height: MediaQuery.of(context).size.height * 0.7,
       width: double.infinity,
       child: Stack(
         children: [
-          Image.network(
-            recipe['image'],
-            width: double.infinity,
-            height: double.infinity,
-            fit: BoxFit.cover,
+          Positioned.fill(
+            child: Image.asset(
+              recipe['image'],
+              fit: BoxFit.cover,
+            ),
           ),
           Container(
             decoration: BoxDecoration(
@@ -207,7 +197,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.black.withOpacity(0.3),
-                  Colors.black.withOpacity(0.7),
+                  Colors.black.withOpacity(0.8),
                 ],
               ),
             ),
@@ -220,10 +210,10 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
               child: InkWell(
                 onTap: () => context.go('/recipes'),
                 child: Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -232,9 +222,10 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       const SizedBox(width: 8),
                       Text(
                         'Back to Recipes',
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.montserrat(
                           fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1,
                         ),
                       ),
                     ],
@@ -244,28 +235,40 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
             ),
           ),
           Positioned(
-            bottom: 40,
-            left: 20,
-            right: 20,
+            bottom: 60,
+            left: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
+            right: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
             child: FadeInUp(
               duration: const Duration(milliseconds: 800),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    recipe['title'],
-                    style: GoogleFonts.roboto(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
+                    'RECIPE',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 4,
+                      color: Colors.white70,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
+                  Text(
+                    recipe['title'],
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      height: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   Text(
                     recipe['description'],
                     style: GoogleFonts.roboto(
                       fontSize: 18,
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white70,
+                      height: 1.6,
                     ),
                   ),
                 ],
@@ -281,24 +284,22 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 40,
+        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
+        vertical: 60,
+      ),
+      decoration: const BoxDecoration(
+        color: Colors.white,
       ),
       child: FadeInUp(
         duration: const Duration(milliseconds: 600),
-        child: Row(
+        child: Wrap(
+          spacing: 30,
+          runSpacing: 30,
+          alignment: WrapAlignment.center,
           children: [
-            Expanded(
-              child: _buildInfoCard(Icons.access_time, 'Time', recipe['time']),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: _buildInfoCard(Icons.bar_chart, 'Difficulty', recipe['difficulty']),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: _buildInfoCard(Icons.people, 'Serves', recipe['servings']),
-            ),
+            _buildInfoCard(Icons.access_time, 'Time', recipe['time']),
+            _buildInfoCard(Icons.bar_chart, 'Difficulty', recipe['difficulty']),
+            _buildInfoCard(Icons.people, 'Serves', recipe['servings']),
           ],
         ),
       ),
@@ -307,40 +308,50 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
 
   Widget _buildInfoCard(IconData icon, String label, String value) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      width: 200,
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            offset: const Offset(0, 10),
+            blurRadius: 20,
           ),
         ],
       ),
       child: Column(
         children: [
-          Icon(
-            icon,
-            size: 28,
-            color: const Color(0xFF4D4D4D),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF2C2C2C),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(
+              icon,
+              size: 24,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            label.toUpperCase(),
+            style: GoogleFonts.montserrat(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 2,
+              color: const Color(0xFF2C2C2C),
+            ),
           ),
           const SizedBox(height: 8),
           Text(
-            label,
-            style: GoogleFonts.roboto(
-              fontSize: 14,
-              color: const Color(0xFF4D4D4D).withOpacity(0.7),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
             value,
-            style: GoogleFonts.roboto(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xFF4D4D4D),
+            style: GoogleFonts.playfairDisplay(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFF2C2C2C),
             ),
             textAlign: TextAlign.center,
           ),
@@ -352,73 +363,98 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
   Widget _buildIngredients(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 40,
-      ),
-      decoration: const BoxDecoration(
-        color: Color(0xFFF8F8F8),
+      padding: const EdgeInsets.symmetric(vertical: 100),
+      decoration: BoxDecoration(
+        color: const Color(0xFF2C2C2C),
+        image: DecorationImage(
+          image: AssetImage(recipe['image']),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.85),
+            BlendMode.darken,
+          ),
+        ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FadeInLeft(
-            duration: const Duration(milliseconds: 600),
-            child: Text(
-              'Ingredients',
-              style: GoogleFonts.roboto(
-                fontSize: 28,
-                fontWeight: FontWeight.w800,
-                color: const Color(0xFF4D4D4D),
-              ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
             ),
-          ),
-          const SizedBox(height: 24),
-          FadeInUp(
-            duration: const Duration(milliseconds: 800),
-            child: Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 15,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: (recipe['ingredients'] as List<String>).asMap().entries.map((entry) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF4D4D4D),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            entry.value,
-                            style: GoogleFonts.roboto(
-                              fontSize: 16,
-                              color: const Color(0xFF4D4D4D),
-                              height: 1.5,
-                            ),
-                          ),
-                        ),
-                      ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FadeInLeft(
+                  duration: const Duration(milliseconds: 600),
+                  child: Text(
+                    'INGREDIENTS',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 4,
+                      color: Colors.white70,
                     ),
-                  );
-                }).toList(),
-              ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                FadeInLeft(
+                  duration: const Duration(milliseconds: 800),
+                  child: Text(
+                    'What You\'ll Need',
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 48),
+                FadeInUp(
+                  duration: const Duration(milliseconds: 1000),
+                  child: Container(
+                    padding: const EdgeInsets.all(32),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.1),
+                        width: 1,
+                      ),
+                    ),
+                    child: Column(
+                      children: (recipe['ingredients'] as List<String>).asMap().entries.map((entry) {
+                        final index = entry.key;
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: index < (recipe['ingredients'] as List).length - 1 ? 24 : 0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 8,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.5),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Text(
+                                  entry.value,
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -430,37 +466,54 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 40,
+        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
+        vertical: 100,
+      ),
+      decoration: const BoxDecoration(
+        color: Colors.white,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FadeInLeft(
             duration: const Duration(milliseconds: 600),
+            child: Text(
+              'INSTRUCTIONS',
+              style: GoogleFonts.montserrat(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 4,
+                color: const Color(0xFF2C2C2C),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          FadeInLeft(
+            duration: const Duration(milliseconds: 800),
             child: Row(
               children: [
                 Text(
-                  'Instructions',
-                  style: GoogleFonts.roboto(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w800,
-                    color: const Color(0xFF4D4D4D),
+                  'Step by Step Guide',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF2C2C2C),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  'Tap to check off completed steps',
-                  style: GoogleFonts.roboto(
+                  'Tap to mark as complete',
+                  style: GoogleFonts.montserrat(
                     fontSize: 14,
-                    color: const Color(0xFF4D4D4D).withOpacity(0.6),
+                    color: const Color(0xFF2C2C2C).withOpacity(0.6),
                     fontStyle: FontStyle.italic,
+                    letterSpacing: 1,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 48),
           Column(
             children: (recipe['steps'] as List<String>).asMap().entries.map((entry) {
               final index = entry.key;
@@ -468,9 +521,9 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
               final isCompleted = _completedSteps.contains(index);
 
               return FadeInUp(
-                duration: Duration(milliseconds: 600 + (index * 100)),
+                duration: Duration(milliseconds: 1000 + (index * 100)),
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 16),
+                  margin: const EdgeInsets.only(bottom: 24),
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -483,30 +536,35 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                     },
                     borderRadius: BorderRadius.circular(16),
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
-                        color: isCompleted ? const Color(0xFF4D4D4D).withOpacity(0.1) : Colors.white,
+                        color: isCompleted ? const Color(0xFF2C2C2C).withOpacity(0.05) : Colors.white,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: isCompleted ? const Color(0xFF4D4D4D) : Colors.transparent,
-                          width: 2,
+                          color: isCompleted ? const Color(0xFF2C2C2C) : Colors.black.withOpacity(0.1),
+                          width: 1,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
+                            color: Colors.black.withOpacity(0.05),
+                            offset: const Offset(0, 10),
+                            blurRadius: 20,
                           ),
                         ],
                       ),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             width: 32,
                             height: 32,
                             decoration: BoxDecoration(
-                              color: isCompleted ? const Color(0xFF4D4D4D) : const Color(0xFF4D4D4D).withOpacity(0.1),
+                              color: isCompleted ? const Color(0xFF2C2C2C) : Colors.white,
                               shape: BoxShape.circle,
+                              border: Border.all(
+                                color: isCompleted ? Colors.transparent : const Color(0xFF2C2C2C),
+                                width: 2,
+                              ),
                             ),
                             child: Center(
                               child: isCompleted
@@ -517,22 +575,24 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                                     )
                                   : Text(
                                       '${index + 1}',
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.montserrat(
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w700,
-                                        color: const Color(0xFF4D4D4D),
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color(0xFF2C2C2C),
                                       ),
                                     ),
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: Text(
                               step,
                               style: GoogleFonts.roboto(
                                 fontSize: 16,
-                                color: isCompleted ? const Color(0xFF4D4D4D).withOpacity(0.7) : const Color(0xFF4D4D4D),
-                                height: 1.5,
+                                height: 1.6,
+                                color: isCompleted 
+                                    ? const Color(0xFF2C2C2C).withOpacity(0.5) 
+                                    : const Color(0xFF2C2C2C),
                                 decoration: isCompleted ? TextDecoration.lineThrough : null,
                               ),
                             ),
@@ -553,84 +613,103 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
   Widget _buildTipsSection(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
-        vertical: 40,
-      ),
-      decoration: const BoxDecoration(
-        color: Color(0xFFF8F8F8),
+      padding: const EdgeInsets.symmetric(vertical: 100),
+      decoration: BoxDecoration(
+        color: const Color(0xFF2C2C2C),
+        image: DecorationImage(
+          image: AssetImage(recipe['image']),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.85),
+            BlendMode.darken,
+          ),
+        ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FadeInLeft(
-            duration: const Duration(milliseconds: 600),
-            child: Text(
-              'Pro Tips',
-              style: GoogleFonts.roboto(
-                fontSize: 28,
-                fontWeight: FontWeight.w800,
-                color: const Color(0xFF4D4D4D),
-              ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : 24,
             ),
-          ),
-          const SizedBox(height: 24),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MediaQuery.of(context).size.width > 800 ? 2 : 1,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: MediaQuery.of(context).size.width > 800 ? 4.5 : 3.5,
-            ),
-            itemCount: (recipe['tips'] as List<String>).length,
-            itemBuilder: (context, index) {
-              return FadeInUp(
-                duration: Duration(milliseconds: 800 + (index * 150)),
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF4D4D4D).withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: const Icon(
-                          Icons.lightbulb_outline,
-                          color: Color(0xFF4D4D4D),
-                          size: 18,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          (recipe['tips'] as List<String>)[index],
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            color: const Color(0xFF4D4D4D),
-                            height: 1.4,
-                          ),
-                        ),
-                      ),
-                    ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FadeInLeft(
+                  duration: const Duration(milliseconds: 600),
+                  child: Text(
+                    'PRO TIPS',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 4,
+                      color: Colors.white70,
+                    ),
                   ),
                 ),
-              );
-            },
+                const SizedBox(height: 24),
+                FadeInLeft(
+                  duration: const Duration(milliseconds: 800),
+                  child: Text(
+                    'Expert Advice',
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 48),
+                Wrap(
+                  spacing: 30,
+                  runSpacing: 30,
+                  children: (recipe['tips'] as List<String>).asMap().entries.map((entry) {
+                    final index = entry.key;
+                    return FadeInUp(
+                      duration: Duration(milliseconds: 1000 + (index * 150)),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width > 800 ? (MediaQuery.of(context).size.width - 78) / 2 : MediaQuery.of(context).size.width - 48,
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.1),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(
+                                Icons.lightbulb_outline,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Text(
+                                entry.value,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  height: 1.6,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
           ),
         ],
       ),
