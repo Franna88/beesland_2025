@@ -55,60 +55,158 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FadeInDown(
-                  duration: const Duration(milliseconds: 1200),
-                  child: Text(
-                    'BEESLAND',
-                    style: GoogleFonts.playfairDisplay(
-                      fontSize: 72,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 8,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                FadeInDown(
-                  delay: const Duration(milliseconds: 400),
-                  duration: const Duration(milliseconds: 1200),
-                  child: Text(
-                    'SLAGHUIS & DELI',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white,
-                      letterSpacing: 4,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
-                FadeInUp(
-                  delay: const Duration(milliseconds: 800),
-                  duration: const Duration(milliseconds: 1200),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                      textStyle: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Quality badges
+                  FadeInDown(
+                    duration: const Duration(milliseconds: 800),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.3),
+                          width: 1,
+                        ),
+                      ),
+                      child: Text(
+                        'ORGANIC • GRASS-FED • HORMONE FREE',
+                        style: GoogleFonts.montserrat(
+                          fontSize: MediaQuery.of(context).size.width > 600
+                              ? 14
+                              : 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          letterSpacing: 2,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    onPressed: () => context.go('/products'),
-                    child: const Text('DISCOVER OUR PRODUCTS'),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  // Main title - responsive
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 1200),
+                    child: Text(
+                      'BEESLAND',
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: _getResponsiveTitleSize(context),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: MediaQuery.of(context).size.width > 600
+                            ? 8
+                            : 4,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  // Subtitle - responsive
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 600),
+                    duration: const Duration(milliseconds: 1200),
+                    child: Text(
+                      'SLAGHUIS & DELI',
+                      style: GoogleFonts.montserrat(
+                        fontSize: _getResponsiveSubtitleSize(context),
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                        letterSpacing: MediaQuery.of(context).size.width > 600
+                            ? 4
+                            : 2,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // Premium quality tagline
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 800),
+                    duration: const Duration(milliseconds: 1200),
+                    child: Text(
+                      'Premium Quality Meats Since 1998',
+                      style: GoogleFonts.roboto(
+                        fontSize: MediaQuery.of(context).size.width > 600
+                            ? 18
+                            : 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white.withOpacity(0.9),
+                        letterSpacing: 1,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  // Call to action button - responsive
+                  FadeInUp(
+                    delay: const Duration(milliseconds: 1000),
+                    duration: const Duration(milliseconds: 1200),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width > 600
+                              ? 32
+                              : 24,
+                          vertical: MediaQuery.of(context).size.width > 600
+                              ? 16
+                              : 14,
+                        ),
+                        textStyle: GoogleFonts.montserrat(
+                          fontSize: MediaQuery.of(context).size.width > 600
+                              ? 16
+                              : 14,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      onPressed: () => context.go('/products'),
+                      child: const Text('DISCOVER OUR PRODUCTS'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  // Helper methods for responsive typography
+  double _getResponsiveTitleSize(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 1200) {
+      return 72; // Desktop - original size
+    } else if (screenWidth > 800) {
+      return 56; // Tablet
+    } else if (screenWidth > 600) {
+      return 48; // Large mobile
+    } else {
+      return 36; // Small mobile
+    }
+  }
+
+  double _getResponsiveSubtitleSize(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 1200) {
+      return 24; // Desktop - original size
+    } else if (screenWidth > 800) {
+      return 22; // Tablet
+    } else if (screenWidth > 600) {
+      return 20; // Large mobile
+    } else {
+      return 18; // Small mobile
+    }
   }
 
   Widget _buildStatsCounter(BuildContext context) {
@@ -342,8 +440,14 @@ class HomeScreen extends StatelessWidget {
                                   const SizedBox(height: 32),
                                   OutlinedButton(
                                     style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                                      side: const BorderSide(color: Colors.white, width: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 32,
+                                        vertical: 16,
+                                      ),
+                                      side: const BorderSide(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
                                       foregroundColor: Colors.white,
                                     ),
                                     onPressed: () => context.go('/about'),
@@ -412,8 +516,14 @@ class HomeScreen extends StatelessWidget {
                             duration: const Duration(milliseconds: 1600),
                             child: OutlinedButton(
                               style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                                side: const BorderSide(color: Colors.white, width: 2),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 32,
+                                  vertical: 16,
+                                ),
+                                side: const BorderSide(
+                                  color: Colors.white,
+                                  width: 2,
+                                ),
                                 foregroundColor: Colors.white,
                               ),
                               onPressed: () => context.go('/about'),
@@ -465,7 +575,9 @@ class HomeScreen extends StatelessWidget {
           Wrap(
             spacing: 16,
             runSpacing: 16,
-            children: images.map((image) => _buildInstagramItem(image)).toList(),
+            children: images
+                .map((image) => _buildInstagramItem(image))
+                .toList(),
           ),
         ],
       ),
@@ -489,18 +601,11 @@ class HomeScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.transparent,
-              Colors.black.withOpacity(0.5),
-            ],
+            colors: [Colors.transparent, Colors.black.withOpacity(0.5)],
           ),
         ),
         child: Center(
-          child: Icon(
-            Icons.photo_camera,
-            color: Colors.white,
-            size: 32,
-          ),
+          child: Icon(Icons.photo_camera, color: Colors.white, size: 32),
         ),
       ),
     );
@@ -510,33 +615,34 @@ class HomeScreen extends StatelessWidget {
     final products = [
       {
         'image': 'images/meat_items/beef-steak.jpg',
-        'title': 'Premium Steaks',
-        'description': 'Hand-selected, perfectly marbled cuts that define excellence',
+        'title': 'Premium Organic Steaks',
+        'description':
+            'Hand-selected, grass-fed beef with perfect marbling. Hormone-free and naturally raised for superior flavor',
         'price': 'From R89/kg',
-        'tag': 'PREMIUM',
+        'tag': 'ORGANIC',
       },
       {
         'image': 'images/meat_items/wors.jpg',
         'title': 'Signature Boerewors',
-        'description': 'Our legendary recipe, crafted with tradition and expertise',
+        'description':
+            'Our legendary recipe using only organic, grass-fed beef. No hormones, no preservatives - just tradition',
         'price': 'R65/kg',
-        'tag': 'BESTSELLER',
+        'tag': 'GRASS-FED',
       },
       {
         'image': 'images/meat_items/biltong.jpg',
         'title': 'Artisanal Biltong',
-        'description': 'Perfectly cured and seasoned to perfection',
+        'description':
+            'Premium cuts from hormone-free cattle, perfectly cured with natural spices and traditional methods',
         'price': 'From R180/kg',
-        'tag': 'FEATURED',
+        'tag': 'HORMONE-FREE',
       },
     ];
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 100),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
           Padding(
@@ -561,7 +667,7 @@ class HomeScreen extends StatelessWidget {
                 FadeInUp(
                   duration: const Duration(milliseconds: 1000),
                   child: Text(
-                    'Our Signature Selection',
+                    'Organic, Grass-Fed Excellence',
                     style: GoogleFonts.playfairDisplay(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
@@ -574,7 +680,7 @@ class HomeScreen extends StatelessWidget {
                 FadeInUp(
                   duration: const Duration(milliseconds: 1200),
                   child: Text(
-                    'Discover our carefully curated selection of premium meats',
+                    'Discover our premium collection of hormone-free, grass-fed meats - naturally raised for exceptional quality and flavor',
                     style: GoogleFonts.roboto(
                       fontSize: 16,
                       color: const Color(0xFF4D4D4D),
@@ -607,11 +713,11 @@ class HomeScreen extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () => context.go('/products'),
                           child: Container(
-                            width: constraints.maxWidth > 1200 
-                                ? (constraints.maxWidth - 240) / 3 
-                                : constraints.maxWidth > 800 
-                                    ? (constraints.maxWidth - 78) / 2 
-                                    : constraints.maxWidth - 48,
+                            width: constraints.maxWidth > 1200
+                                ? (constraints.maxWidth - 240) / 3
+                                : constraints.maxWidth > 800
+                                ? (constraints.maxWidth - 78) / 2
+                                : constraints.maxWidth - 48,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
@@ -649,7 +755,9 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                         decoration: BoxDecoration(
                                           color: const Color(0xFF2C2C2C),
-                                          borderRadius: BorderRadius.circular(4),
+                                          borderRadius: BorderRadius.circular(
+                                            4,
+                                          ),
                                         ),
                                         child: Text(
                                           product['tag']!,
@@ -667,7 +775,8 @@ class HomeScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(24),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         product['title']!,
@@ -688,7 +797,8 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 16),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             product['price']!,
@@ -702,7 +812,8 @@ class HomeScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
                                               color: const Color(0xFF2C2C2C),
-                                              borderRadius: BorderRadius.circular(8),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                             child: const Icon(
                                               Icons.arrow_forward,
@@ -731,7 +842,10 @@ class HomeScreen extends StatelessWidget {
             duration: const Duration(milliseconds: 1400),
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 16,
+                ),
                 side: const BorderSide(color: Color(0xFF2C2C2C), width: 2),
               ),
               onPressed: () => context.go('/products'),
@@ -754,21 +868,18 @@ class HomeScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
+        horizontal: MediaQuery.of(context).size.width > 1200
+            ? 80
+            : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
         vertical: 80,
       ),
-      decoration: const BoxDecoration(
-        color: Color(0xFFF8F8F8),
-      ),
+      decoration: const BoxDecoration(color: Color(0xFFF8F8F8)),
       child: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth > 1000) {
             return Row(
               children: [
-                Expanded(
-                  flex: 6,
-                  child: _buildFeaturesList(),
-                ),
+                Expanded(flex: 6, child: _buildFeaturesList()),
                 const SizedBox(width: 48),
                 Expanded(
                   flex: 4,
@@ -818,7 +929,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Why We\'re the Real McCoy',
+            'Premium Organic Quality',
             style: GoogleFonts.roboto(
               fontSize: 36,
               fontWeight: FontWeight.w900,
@@ -827,21 +938,27 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           _buildFeature(
-            Icons.emoji_events,
-            'Quality First, Always',
-            'We don\'t mess around - only A-grade vleis makes it to our shelves. No shortcuts, no funny business.',
+            Icons.eco,
+            'Organic & Grass-Fed',
+            'Our livestock roam free on natural pastures, eating only organic grass. No hormones, no antibiotics - just pure, natural meat.',
+          ),
+          const SizedBox(height: 24),
+          _buildFeature(
+            Icons.verified,
+            'Hormone-Free Guarantee',
+            'We guarantee 100% hormone-free meat. Our animals are raised naturally, resulting in healthier, more flavorful vleis.',
           ),
           const SizedBox(height: 24),
           _buildFeature(
             Icons.handshake,
             'Friendly Service',
-            'Come as a customer, leave as family. Our tjommies will sort you out proper!',
+            'Come as a customer, leave as family. Our tjommies will sort you out proper with the finest quality meats!',
           ),
           const SizedBox(height: 24),
           _buildFeature(
             Icons.access_time,
             'Fresh Daily',
-            'Everything fresh as can be - we don\'t play games with old vleis.',
+            'Everything fresh as can be - we don\'t play games with old vleis. Delivered fresh from our trusted organic farms.',
           ),
         ],
       ),
@@ -858,11 +975,7 @@ class HomeScreen extends StatelessWidget {
             color: const Color(0xFF4D4D4D),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
-            icon,
-            color: Colors.white,
-            size: 24,
-          ),
+          child: Icon(icon, color: Colors.white, size: 24),
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -896,24 +1009,30 @@ class HomeScreen extends StatelessWidget {
   Widget _buildTestimonials(BuildContext context) {
     final testimonials = [
       {
-        'text': 'Eish, this place is lekker! Best boerewors in the Bay, no jokes. The ou toppies here know their stuff!',
+        'text':
+            'Eish, this place is lekker! Best boerewors in the Bay, no jokes. The ou toppies here know their stuff!',
         'customer': 'Thabo M.',
         'role': 'Regular Customer',
-        'image': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        'image':
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
         'rating': 5,
       },
       {
-        'text': 'Been coming here since they opened. Always fresh, always friendly. These okes really care about quality!',
+        'text':
+            'Been coming here since they opened. Always fresh, always friendly. These okes really care about quality!',
         'customer': 'Susan K.',
         'role': 'Loyal Customer',
-        'image': 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        'image':
+            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
         'rating': 5,
       },
       {
-        'text': 'Ag man, where else can you get such lekker vleis and such friendly service? Nowhere, I tell you!',
+        'text':
+            'Ag man, where else can you get such lekker vleis and such friendly service? Nowhere, I tell you!',
         'customer': 'Pieter V.',
         'role': 'Happy Customer',
-        'image': 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+        'image':
+            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
         'rating': 5,
       },
     ].map((t) => Map<String, dynamic>.from(t)).toList();
@@ -1012,8 +1131,8 @@ class HomeScreen extends StatelessWidget {
                         width: constraints.maxWidth > 1200
                             ? (constraints.maxWidth - 240) / 3
                             : constraints.maxWidth > 800
-                                ? (constraints.maxWidth - 78) / 2
-                                : constraints.maxWidth - 48,
+                            ? (constraints.maxWidth - 78) / 2
+                            : constraints.maxWidth - 48,
                         padding: const EdgeInsets.all(32),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.1),
@@ -1058,7 +1177,9 @@ class HomeScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                      image: NetworkImage(testimonial['image']!),
+                                      image: NetworkImage(
+                                        testimonial['image']!,
+                                      ),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -1105,12 +1226,12 @@ class HomeScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width > 1200 ? 80 : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
+        horizontal: MediaQuery.of(context).size.width > 1200
+            ? 80
+            : (MediaQuery.of(context).size.width > 800 ? 48 : 16),
         vertical: 80,
       ),
-      decoration: const BoxDecoration(
-        color: Color(0xFF4D4D4D),
-      ),
+      decoration: const BoxDecoration(color: Color(0xFF4D4D4D)),
       child: FadeInUp(
         duration: const Duration(milliseconds: 1000),
         child: Column(
@@ -1127,10 +1248,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'Come visit us in Jeffreys Bay and taste the difference quality makes!',
-              style: GoogleFonts.roboto(
-                fontSize: 18,
-                color: Colors.white,
-              ),
+              style: GoogleFonts.roboto(fontSize: 18, color: Colors.white),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
@@ -1179,7 +1297,10 @@ class HomeScreen extends StatelessWidget {
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white,
-                            side: const BorderSide(color: Colors.white, width: 2),
+                            side: const BorderSide(
+                              color: Colors.white,
+                              width: 2,
+                            ),
                           ),
                           onPressed: () => context.go('/contact'),
                           child: const Text('Get Directions'),
@@ -1195,4 +1316,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}
